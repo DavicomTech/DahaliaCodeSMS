@@ -23,7 +23,7 @@ class School(models.Model):
     def __str__(self):
         return self.school_name
     def get_absolute_url(self):
-        return f"/schools/{self.school_id}/"
+        return f"/{self.school_name}/"
     def get_logo_url(self):
         if self.logo:
             return self.logo.url
