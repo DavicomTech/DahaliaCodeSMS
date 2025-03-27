@@ -35,3 +35,5 @@ class School(models.Model):
     def get_user(self):
         if self.user:
             return self.user.username
+        return None
+
