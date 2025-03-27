@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.flatpages',
     'SchoolsAuth',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
