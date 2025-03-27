@@ -14,7 +14,7 @@ schema_view = get_schema_view(
         default_version="v1",
         description="API documentation for Dahliacode",
         terms_of_service="https://www.google.com/policies/terms/",
-        contact=opensapi.Contact(email="leanstixX@gmail.com"),
+        contact=openapi.Contact(email="leanstixx@gmail.com"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
