@@ -31,7 +31,19 @@ class CustomUserManager(BaseUserManager):
             raise ValidationError("User registration failed.")
         return user
     
-    def create_superuser(self, email, )
+    def create_superuser(self, email, password=None, **extra_fields):
+        """
+        Create and return a superuser with the given email and password.
+        """
+        if not email:
+            raise ValueError("The Email field must be set")
+        email = self.normalize_email(email)
+        user = self.model(email=email, **extra_fields)
+        user.set_password(password)
+        user.is_staff = True
+        user.is_superuser = True
+        user.save(using=self._db)
+        return user
 class School(models.Model):
     school_id = models.CharField(max_length=10, unique=True, editable=False)
     school_name = models.CharField(max_length=255)
