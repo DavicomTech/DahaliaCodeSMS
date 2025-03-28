@@ -1,6 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
+from django.contrb.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.core.validators import RegexValidator, EmailValidator
+from django.utils.crypto import get_random_string
+from django.core.exceptions import ValidationError
+from django.conf import settings
+import logging
+import requests
+from io import BytesIO
 
 class School(models.Model):
     school_id = models.CharField(max_length=10, unique=True, editable=False)
