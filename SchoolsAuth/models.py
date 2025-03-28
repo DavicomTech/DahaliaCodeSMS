@@ -10,6 +10,28 @@ import logging
 import requests
 from io import BytesIO
 
+class CustomUserManager(BaseUserManager):
+    def create(self, validated_data):
+        try:
+            email = validated_data('school_email')
+            password = validated_data('password')
+            school_name = validated_data('school_name')
+
+            user = User.objects.create_user(
+                email=email,
+                password=password,
+                school_name=school_name,
+                **{k: v for k, v in validated_data.items() if k not in ['school_email', 'password', 'school_name']}
+            )
+
+            logging.info(f"User created successfully: {email}")
+
+        except Exception as e:
+            logging.error(f"Error during user registration: {e}")
+            raise ValidationError("User registration failed.")
+        return user
+    
+    def create_superuser(self, email, )
 class School(models.Model):
     school_id = models.CharField(max_length=10, unique=True, editable=False)
     school_name = models.CharField(max_length=255)
